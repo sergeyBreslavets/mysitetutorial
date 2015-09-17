@@ -49,7 +49,7 @@ var srcjade        ='./src/jade/*.jade';
 //src target
 var csstarget      = './www/assets/styles/';
 var htmlDst        = './www/';
-var sasstarget     = './www/assets/styles';
+var sasstarget     = './www/assets/styles/';
 var pathjstarget   = './www/assets/scripts/';
 var fontsTarget    = './www/assets/fonts/';
 var imgDst         = './www/assets/images';
@@ -110,7 +110,7 @@ gulp.task('styles', function() {
 
 //sass task
 gulp.task('sass', function() {
-    gulp.src('./src/sass/styles.sass')
+    gulp.src('./src/sass/styles.scss')
         /*.pipe(sourcemaps.init())*/
         .pipe(sass({
             errLogToConsole: true
@@ -120,11 +120,11 @@ gulp.task('sass', function() {
 });
 
 // default gulp task
-gulp.task('default', ['imagemin', /*'htmlpage', */ 'scripts', 'styles', 'sass', 'jade'], function() {
+gulp.task('default', ['imagemin', 'htmlpage',  'scripts', 'styles', 'sass', 'jade'], function() {
     // watch for HTML changes
-   // gulp.watch('./src/*.html', function() {
-   //     gulp.run('htmlpage');
-   // });
+    gulp.watch('./src/html/*.html', function() {
+        gulp.run('htmlpage');
+   });
 
     // watch for JS changes
     gulp.watch('./src/scripts/*.js', function() {
